@@ -18,8 +18,8 @@ Creating the Tidy Data Set from Raw Data
 To create the tidy set in R or R Studio, simply put the run_analysis.R
 script in a suitable directory and execute the following two commands
 in R (or R Studio):
-1. setcd("<dir>") (where <dir> is the directory containing run_analysis.R)
-2. source("run_analysis.R")
+1. `setcd("<dir>")` (where `<dir>` is the directory containing run_analysis.R)
+2. `source("run_analysis.R")`
 
 The run_analysis.R script will do the following:
 1. Download the original set of data files from the Internet (in
@@ -50,6 +50,8 @@ raw measurements in the X, Y, and Z directions (e.g.,
 * Exclude variables based on FFT calculations (e.g., "fBodyAcc-mean()-X").
 * Exclude variables based on calculated magnitudes (e.g.,
 "tBodyAccMag-mean()").
+
+This produces a set of 30 variables, corresponding to 10 types of measurements in the directions of the X, Y, and Z axes.
 
 Creating the Tidy Data Set
 --------------------------
