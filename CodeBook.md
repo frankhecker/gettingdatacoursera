@@ -224,5 +224,7 @@ variable names in the original data set, as discussed above:
 Oneto, Smartlab - Non Linear Complex Systems Laboratory, DITEN -
 UniversitÃ degli Studi di
 Genova. [http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones)
+(dataset itself at
+[https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI\%20HAR%20Dataset.zip](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI\%20HAR%20Dataset.zip))
 
 \[2\] "Tidy Data", Hadley Wickham, RStudio. [http://vita.had.co.nz/papers/tidy-data.pdf](http://vita.had.co.nz/papers/tidy-data.pdf)
