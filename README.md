@@ -25,12 +25,14 @@ in R (or R Studio):
 
 The run_analysis.R script will do the following:
 
-1. Download the original set of data files from the Internet (in
+1. Load any required R packages.
+2. Download the original set of data files from the Internet (in
 zipped form).
-2. Extract the directory of data files into the working directory.
-3. Read into R all of the relevant data.  4. Perform the five steps
-called for in the project description, culminating in the creation of
-the tidy dataset.
+3. Extract the directory of data files into the working directory.
+4. Read into R all of the relevant data.
+5. Perform the five steps called for in the project description,
+culminating in the creation of the tidy dataset.
+6. Write the tidy data set out as a file.
 
 Selecting Variables for Analysis
 --------------------------------
@@ -44,7 +46,7 @@ Of the 561 variables, 79 variables have either "mean" or "std" in
 their names. However not all of them appear to be appropriate for
 inclusion in the analysis: In particular, many of the variables do not
 represent original memeasurements but rather are variables derived in
-some way on the original measurements. The analysis script is
+some way from the original measurements. The analysis script is
 conservative in terms of which variables to include; it reflects the
 following decisions:
 
@@ -55,9 +57,19 @@ raw measurements in the X, Y, and Z directions (e.g.,
 * Exclude variables based on calculated magnitudes (e.g.,
 "tBodyAccMag-mean()").
 
-This produces a set of 30 variables, corresponding to 10 types of measurements in the directions of the X, Y, and Z axes.
+This produces a set of 30 variables, corresponding to 10 types of
+measurements each in the directions of the X, Y, and Z axes.
 
 Creating the Tidy Data Set
 --------------------------
 
-To be written.
+The analysis script produces a "narrow" tidy set, with each row
+corresponding to a given combination of subject, activity, and
+measured variable. For example, there is one row containing the mean
+value of all observations in the original data set for the variable
+"tBodyAcc-std()-X" (standard deviation of body acceleration in the
+direction of the X axis) for subject 3 while walking.
+
+The total number of rows in the final data set is thus the product of
+the number of subjects times the number of activities times the
+number of selected variables (30, from above).
