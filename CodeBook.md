@@ -9,52 +9,60 @@ Recognition Using Smartphones Dataset, Version 1.0" \[1\]. The
 raw data is from 30 subjects, each performing six activities while
 wearing a smartphone equipped with an accelerometer and gyroscope.
 
-The raw data contains a total of 561 variables measured (or, in some
-cases, calculated) for each combination of subject and activity. (For
-a description of the original variables see the file `README.txt`
-included with the original data set.)
+The raw data contains a total of 561 variables wth values for each
+combination of subject and activity. (For a description of the
+original variables see the file `README.txt` included with the
+original data set.)
 
 The analysis for this project selects a subset of the 561 variables,
 computes their means for each combination of subject and activity, and
 produces an output data set containing those means in "tidy" format
 \[2\].
 
-The Original Data Sets
----------------------------------
+More specifically, the five steps of the analysis are as follows:
 
-The original data sets consist of two groups of files, one with
-training data (in the `train` subdirectory) and one with test data (in
-the `test` subdirectory). Each group in turn contains three files,
+1. Merge the training and the test sets.
+2. Extract only the mean and standard deviation measurements.
+3. Replace the activity numeric codes with activity names.
+4. Use descriptive variable names.
+5. Create a second, independent tidy data set with the average of
+each variable for each activity and each subject.
+
+See below for more information on these processing steps.
+
+Processing the Original Data
+----------------------------
+
+The original data set contains two groups of files, one with training
+data (in the `train` subdirectory) and one with test data (in the
+`test` subdirectory). Each group in turn contains three files,
 containing the subject ids (`subject_train.txt` or `subject_test.txt`
 respecitvely), activity codes (`y_train.txt` or `y_test.md`), and the
 measurements themselves (`X_train.txt` or `X_test.txt`). Each row in
 each of the three files corresponds to a single sample of the 561
 variables for a given subject and activity.
 
-The original data sets also contain separate files mapping activity
+The original data set also contains separate files mapping activity
 codes to activity labels (`activity_labels.txt`) and mapping the
 variable column indices (from 1 to 561) in `X_train.txt` and
 `X_test.txt` to the corresponding variable names (`features.txt`).
 
 Finally, the original data sets also contain `Inertial Signals`
-subdirectories with additional raw data. This data was not included in the
-analysis for the course project.
-
-Processing the Original Data
-----------------------------
+subdirectories with additional raw data. This data was not included in
+the analysis for the course project.
 
 All the data files mentioned above were used to produce six data sets,
-corresponing to the two groups of three data file noted above. These
-data sets were then combined to produce one master data set containing
-all the raw data (with the exception of the `Inertial Signals` data,
-as noted above). The columns of this data set included the subject id,
-activity code, and the 561 variables; the rows included all
-obervations from the training and test data sets.
+corresponding to the two groups of three data files discussed
+above. These data sets were then combined to produce one master data
+set containing all the raw data (with the exception of the `Inertial
+Signals` data, as noted above). The columns of this data set included
+the subject id, activity code, and the 561 variables; the rows
+included all observations from the training and test data sets.
 
 Selecting Variables for Analysis
 --------------------------------
 
-As noted above, the original data sets contain 561 separate variables
+As noted above, the original data set contains 561 separate variables
 (not counting the subject and activity codes). The course project
 description is somewhat ambiguous in its discussion of which "mean"
 and "standard deviation" variables to extract for further analysis.
@@ -62,39 +70,54 @@ and "standard deviation" variables to extract for further analysis.
 Of the 561 variables, 79 variables have either "mean" or "std" in
 their names. However not all of them appear to be appropriate for
 inclusion in the analysis: In particular, many of the variables do not
-represent original memeasurements but rather are variables derived in
-some way from the original measurements. The analysis script is
-conservative in terms of which variables to include; it reflects the
-following decisions:
+represent original measurements but rather are variables derived in
+some way from the original measurements. This analysis is conservative
+in terms of which variables to include; it reflects the following
+decisions:
 
 * Include variables that represent means and standard deviations of
 raw measurements in the X, Y, and Z directions (e.g.,
-`tBodyAcc-mean()-X`).
+`tBodyAcc-mean()-X`, representing the mean value of body linear
+acceleration in the X direction for a given observation of a subject
+performing an activity).
 * Exclude variables based on FFT calculations (e.g., `fBodyAcc-mean()-X`).
 * Exclude variables based on calculated magnitudes (e.g.,
 `tBodyAccMag-mean()`).
 
-This produces a set of 30 variables, corresponding to 10 types of
-measurements each in the directions of the X, Y, and Z axes.
+This  produces a set  of 30  variables, corresponding  to 10  types of
+measurements each  in the  directions of  the X, Y,  and Z  axes. (See
+below for a list of the variables selected for analysis.)
+
+Adding Activity Labels and Descriptive Variable Names
+-----------------------------------------------------
+
+The activity numeric codes in the data (from 1 to 6) were replaced by
+the activity labels (from `activity_labels.txt`).
+
+Descriptive variable names were created based on the variable names in
+the original data set (from `features.txt`). The original variable
+names were modified slightly in order to make the new names usable as
+standard R variable identifiers, with no spaces, parentheses removed,
+and hyphens replaced with underscores.
 
 Creating the Tidy Data Set
 --------------------------
 
 The analysis script produces a "narrow" tidy set, with each row
 corresponding to a given combination of subject, activity, and
-measured variable. For example, there is one row containing the mean
-value of all observations in the original data set for the variable
-"tBodyAcc-std()-X" (standard deviation of body acceleration in the
-direction of the X axis) for subject 3 while walking.
+variable. For example, there is one row containing the mean value of
+all observations in the original data set for the variable
+"tBodyAcc-std()-X" (standard deviation of body linear acceleration in
+the direction of the X axis) for subject 3 while walking.
 
 This final data set is produced by first melting the data set produced
-by step 4 (i.e., containing only the mean and standard deviation
-measurements), using subject and activity as id variables. This takes
-a row containing 30 columns for the 30 measurements produced for a
-given subject and activity and produces 30 rows in the melted data
-set, one row for each measurement for that subject and activity. The
-melted data thus has four columns: subject, activity, (type of)
-measurement, and measured value.
+by step 4 of the analysys (i.e., containing only the mean and standard
+deviation measurements), using subject and activity as id
+variables. This takes a row containing 30 columns for the 30
+measurements produced for a given subject and activity and produces 30
+rows in the melted data set, one row for each measurement for that
+subject and activity. The melted data thus has four columns: subject,
+activity, (type of) measurement, and measured value.
 
 This melted data set is then used to produce the final tidy data set,
 by taking all rows for a given subject/activity/measurement and

@@ -32,14 +32,8 @@ zipped form).
 3. Extract the directory of data files into the working directory.
 4. Read into R all of the relevant data.
 5. Perform the five steps called for in the project description,
-culminating in the creation of the tidy dataset:
-    1. Merges the training and the test sets.
-    2. Extracts only the mean and standard deviation measurements.
-    3. Replace the activity numeric codes with activity names.
-    4. Use descriptive variable names.
-    5. Creates a second, independent tidy data set with the average of each
-       variable for each activity and each subject. 
+culminating in the creation of the tidy dataset.
 6. Write the tidy data set out as a file `tidy_data.txt`.
 
-See `CodeBook.md` for a escription of how the tidy data set was
+See `CodeBook.md` for a description of how the tidy data set was
 created and what data it contains.
