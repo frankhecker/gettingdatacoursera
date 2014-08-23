@@ -41,7 +41,7 @@ Dataset` containing two groups of files, one with training data (in
 the `train` subdirectory) and one with test data (in the `test`
 subdirectory). Each group in turn contains three files, containing the
 subject ids (`subject_train.txt` or `subject_test.txt` respectively),
-activity codes (`y_train.txt` or `y_test.md`), and the measurements
+activity codes (`y_train.txt` or `y_test.txt`), and the measurements
 themselves (`X_train.txt` or `X_test.txt`). Each row in each of the
 three files corresponds to a single sample of the 561 variables for a
 given subject and activity.
@@ -96,8 +96,8 @@ axes. (See below for a list of the variables selected for analysis.)
 Adding Activity Labels and Descriptive Variable Names
 -----------------------------------------------------
 
-The activity numeric codes in the data (from 1 to 6) were replaced by
-the activity labels (from `activity_labels.txt`).
+The activity numeric codes in the data (with values from 1 to 6) were
+replaced by the activity labels (from `activity_labels.txt`).
 
 Descriptive variable names were created based on the variable names in
 the original data set (from `features.txt`). The original variable
@@ -149,9 +149,8 @@ file) are as follows:
 
 * Subject: An integer identifying the subject, with values from 1
   to 30.
-* Activity: A character string with the activity label, with possible
+* Activity: A character string identifying the activity, with possible
   values as follows:
-    * WALKING
     * WALKING
     * WALKING_UPSTAIRS
     * WALKING_DOWNSTAIRS
