@@ -35,12 +35,17 @@ Creating the Tidy Data Set from Raw Data
 ----------------------------------------
 
 To create the tidy set, simply put the `run_analysis.R` script in a
-suitable directory and execute the following two commands in R (or R
-Studio):
+suitable directory (which can be empty) and execute the following two
+commands in R (or R Studio):
 
 1. `setcd("<dir>")` (where `<dir>` is the directory containing
 the `run_analysis.R` script)
 2. `source("run_analysis.R")`
+
+If you have already downloaded and extracted the data set yourself,
+the `run_analysis.R` script should be in the same directory as the
+`UCI HAR Dataset` directory. (Do _not_ put the `run_analysis.R` script
+in the `UCI HAR Dataset` directory itself.)
 
 The `run_analysis.R` script will do the following:
 
