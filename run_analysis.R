@@ -85,18 +85,15 @@ combined_df <- rbind(train_df, test_df)
 # deviation for each measurement."
 #
 # Find the subset of variables that represent means and standard
-# deviations of raw measurements in the X, Y, and Z directions (e.g.,
-# "tBodyAcc-mean()-X").  Exclude variables based on FFT calculations
-# (e.g., "fBodyAcc-mean()-X"), as well as those based on calculated
-# magnitudes (e.g., "tBodyAccMag-mean()").  The subset is identified
-# by the indices identifying the position of those variables within
-# the overall list of variables.
+# deviations, i.e., whose names include "-mean()" or "-std()".  The
+# subset is identified by the indices identifying the position of
+# those variables within the overall list of variables.
 #
 # NOTE: We use '\\' in the regular expression instead of '\' because
 # we need to escape the backslash character from R's string parsing.
 
 message("Extracting mean and standard deviation data (step 2)")
-meanstd_indices <- grep("^t.*-(mean|std)\\(\\)-(X|Y|Z)$", features_df$V2)
+meanstd_indices <- grep("-(mean|std)\\(\\)", features_df$V2)
 
 # Create a new data set containing only these means and standard deviations,
 # as well as the first two columns (subject and activity) carried over from
@@ -154,10 +151,13 @@ melted_df <- melt(meanstd_df,
 # set with the Value column replaced by a new column Mean
 # corresponding to the mean value for a given combination of subject,
 # activity, and type of measurement.
+#
+# NOTE: Use "plyr::summarize" instead of "summarize" to avoid name
+# conflicts with the Hmisc library used in the Week 3 quiz.
 
 tidy_df <- ddply(melted_df,
                  .(Subject, Activity, Measurement),
-                 summarize,
+                 plyr::summarize,
                  Mean = mean(Value))
 
 # Write the tidy data set to a file for submission.
