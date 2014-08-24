@@ -294,6 +294,12 @@ variable names in the original data set, as discussed above:
 * fBodyBodyGyroJerkMag_std: Standard deviation of magnitude of FFT
   results for body angular velocity jerk signals.
 
+The original `features_info.txt` file does not explicitly specify the
+units for the measurements. In general measurements of acceleration
+would be given as m/s^2 (meters per second squared) and measurments of
+velocity as m/s (meters per second); whether or not this is true in
+the case of the original data set is unclear.
+
 \[1\] "Human Activity Recognition Using Smartphones Dataset, Version
 1.0", Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, and Luca
 Oneto, Smartlab - Non Linear Complex Systems Laboratory, DITEN -
