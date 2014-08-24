@@ -6,12 +6,15 @@ Course project for Coursera "Getting and Cleaning Data" course
 Repository Files
 ----------------
 
-This repository contains three files:
+This repository contains four files:
 
 * `README.md`. The file you're reading.
 * `run_analysis.R`. An R script to create a tidy data set from a set of
   raw accelerometer data.
-* `CodeBook.md`. A code book describing the variables in the tidy data set.
+* `CodeBook.md`. A code book describing the variables in the tidy data
+  set and various notes about how the analysis was done.
+* `tidy_data.txt`. A copy of the output file created by the analysis
+  script.
 
 Prerequisites
 -------------
