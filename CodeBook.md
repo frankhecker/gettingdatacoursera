@@ -74,7 +74,7 @@ and "standard deviation" variables to extract for further analysis.
 Of the 561 variables, 79 variables have either "mean" or "std" in
 their names. However not all of them appear to be appropriate for
 inclusion in the analysis. For example, the `fBodyAcc-*` group of
-variables inclues variables `fBodyAcc-mean()-X`, `fBodyAcc-mean()-Y`,
+variables includes variables `fBodyAcc-mean()-X`, `fBodyAcc-mean()-Y`,
 `fBodyAcc-mean()-Z`, wih corresponding standard deviation variables
 `fBodyAcc-std()-X`, `fBodyAcc-std()-Y`, and
 `fBodyAcc-std()-Z`. However the `fBodyAcc` group also includes
@@ -143,13 +143,12 @@ activities, the tidy set should contain 11,880 rows, corresponding to
 The final tidy data set is written to disk as a text file using
 `write.table`, with one line per row and the values for each row
 separated by spaces. The output file can be read into R using
-`read.table`.
+`read.table` with `header = TRUE`.
 
 Format of the Tidy Data Set
 ---------------------------
 
-The columns in the final tiny data set (and the corresponding output
-file) are as follows:
+The columns in the final tiny data set output file are as follows:
 
 * Subject: An integer identifying the subject, with values from 1
   to 30.
@@ -287,18 +286,18 @@ variable names in the original data set, as discussed above:
   results for body linear acceleration jerk signals.
 * fBodyBodyGyroMag_mean: Mean of magnitude of FFT results for body
   angular velocity.
-* fBodyBodyGyroMag_std:: Standard deviation of magnitude of FFT
+* fBodyBodyGyroMag_std: Standard deviation of magnitude of FFT
   results for body angular velocity.
-* fBodyBodyGyroJerkMag_mean:: Mean of magnitude of FFT results for
+* fBodyBodyGyroJerkMag_mean: Mean of magnitude of FFT results for
   body angular velocity jerk signals.
 * fBodyBodyGyroJerkMag_std: Standard deviation of magnitude of FFT
   results for body angular velocity jerk signals.
 
 The original `features_info.txt` file does not explicitly specify the
 units for the measurements. In general measurements of acceleration
-would be given as m/s^2 (meters per second squared) and measurments of
-velocity as m/s (meters per second); whether or not this is true in
-the case of the original data set is unclear.
+are given as m/s^2 (meters per second squared) and measurements of
+velocity as m/s (meters per second); it's unclear whether or not this
+is true in the case of the original data set.
 
 \[1\] "Human Activity Recognition Using Smartphones Dataset, Version
 1.0", Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, and Luca
