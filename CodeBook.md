@@ -113,12 +113,13 @@ original variable `tBodyAcc-mean()-X` the descriptive name used is
 Creating the Tidy Data Set
 --------------------------
 
-The analysis script produces a "narrow" tidy set, with each row
-corresponding to a given combination of subject, activity, and
-variable. For example, there is one row containing the mean value of
-all observations in the original data set for the variable
-"tBodyAcc-std()-X" (standard deviation of body linear acceleration in
-the direction of the X axis) for subject 3 while walking.
+The analysis script produces a "narrow" (or "long") tidy data set,
+with each row corresponding to a given combination of subject,
+activity, and variable. For example, there is one row containing the
+mean value of all observations in the original data set for the
+variable "tBodyAcc-std()-X" (standard deviation of body linear
+acceleration in the direction of the X axis) for subject 3 while
+walking.
 
 This final data set is produced by first melting the data set produced
 by step 4 of the analysis (i.e., containing only the mean and standard
@@ -144,6 +145,12 @@ The final tidy data set is written to disk as a text file using
 `write.table`, with one line per row and the values for each row
 separated by spaces. The output file can be read into R using
 `read.table` with `header = TRUE`.
+
+(Note that the data frame resulting from reading in the output file
+will _not_ be identical to the data frame produced by the script, due
+to floating point rounding if nothing else. There may also be other
+differences depending on whether the `Activity` and `Measurement`
+columns are treated as character strings or factors.)
 
 Format of the Tidy Data Set
 ---------------------------
