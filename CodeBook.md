@@ -73,25 +73,28 @@ and "standard deviation" variables to extract for further analysis.
 
 Of the 561 variables, 79 variables have either "mean" or "std" in
 their names. However not all of them appear to be appropriate for
-inclusion in the analysis: In particular, many of the variables do not
-represent original measurements but rather are variables derived in
-some way from the original measurements.
+inclusion in the analysis. For example, the `fBodyAcc-*` group of
+variables inclues variables `fBodyAcc-mean()-X`, `fBodyAcc-mean()-Y`,
+`fBodyAcc-mean()-Z`, wih corresponding standard deviation variables
+`fBodyAcc-std()-X`, `fBodyAcc-std()-Y`, and
+`fBodyAcc-std()-Z`. However the `fBodyAcc` group also includes
+variables `fBodyAcc-meanFreq()-X`, `fBodyAcc-meanFreq()-Y`, and
+`fBodyAcc-meanFreq()-Z` that have no corresponding standard deviation
+variables. This analysis omits variables representing means without
+corresponding standard deviations, which brings the total number of
+selected variables down to 66.
 
-The analysis done in this course project is conservative in terms of
-which variables to include; it reflects the following decisions:
+Another issue is that some mean and standard deviation variables do
+not have individual X, Y, or Z components. For example, the
+`tBodyAccMag-*` group of variables includes `tBodyAccMag-mean()` and
+`tBodyAccMag-std()`; since these are based on the magnitudes (i.e.,
+lengths) of the corresponding 3-dimensional vectors by definition they
+will not have X, Z, or Z components. There are 18 variables of this
+type; this analysis includes them all as part of the 66 selected
+variables.
 
-* Include variables that represent means and standard deviations of
-raw measurements in the X, Y, and Z directions (e.g.,
-`tBodyAcc-mean()-X`, representing the mean value of body linear
-acceleration in the X direction for a given observation of a subject
-performing an activity).
-* Exclude variables based on FFT calculations (e.g., `fBodyAcc-mean()-X`).
-* Exclude variables based on calculated magnitudes (e.g.,
-`tBodyAccMag-mean()`).
-
-These selection criteria produce a set of 30 variables, corresponding
-to 10 types of measurements, each in the directions of the X, Y, and Z
-axes. (See below for a list of the variables selected for analysis.)
+See below for a list of the variables selected for analysis and their
+descriptions.
 
 Adding Activity Labels and Descriptive Variable Names
 -----------------------------------------------------
@@ -120,10 +123,10 @@ the direction of the X axis) for subject 3 while walking.
 This final data set is produced by first melting the data set produced
 by step 4 of the analysis (i.e., containing only the mean and standard
 deviation measurements), using subject and activity as id
-variables. This takes a row containing 30 columns for the 30
-measurements produced for a given subject and activity and produces 30
-rows in the melted data set, one row for each measurement for that
-subject and activity. The melted data set has four columns,
+variables. This takes a row containing the columns for the multiple
+measurements produced for a given subject and activity and produces
+multiple rows in the melted data set, one row for each measurement for
+that subject and activity. The melted data set has four columns,
 corresponding to the subject, activity, (type of) measurement, and
 measured value.
 
@@ -131,10 +134,11 @@ This melted data set is then used to produce the final tidy data set,
 by taking all rows for a given subject/activity/measurement and
 computing the mean of the measured values. The final tidy data set
 also has four columns, corresponding to the subject, activity, (type
-of) measurement, and mean of the measured values. The total number of
-rows in the final tidy data set is the product of the number of
-subjects times the number of activities times the number of selected
-variables (30, from above).
+of) measurement, and mean of the measured values.
+
+Assuming that there was complete coverage of all subjects and
+activities, the tidy set should contain 11,880 rows, corresponding to
+30 subjects, 6 activities, and 66 variables.
 
 The final tidy data set is written to disk as a text file using
 `write.table`, with one line per row and the values for each row
@@ -217,6 +221,78 @@ variable names in the original data set, as discussed above:
   jerk signal in the Y direction.
 * tBodyGyroJerk_std_Z: Standard deviation of body angular velocity
   jerk signal in the Z direction.
+* fBodyAcc_mean_X: Mean of FFT results for body linear acceleration in
+  the X direction.
+* fBodyAcc_mean_Y: Mean of FFT results for body linear acceleration in
+  the Y direction.
+* fBodyAcc_mean_Z: Mean of FFT results for body linear acceleration in
+  the Z direction.
+* fBodyAcc_std_X: Standard deviation of FFT results for body linear
+  acceleration in the X direction.
+* fBodyAcc_std_Y: Standard deviation of FFT results for body linear
+  acceleration in the Y direction.
+* fBodyAcc_std_Z: Standard deviation of FFT results for body linear
+  acceleration in the Z direction.
+* fBodyAccJerk_mean_X: Mean of FFT results for body linear
+  acceleration jerk signal in the X direction.
+* fBodyAccJerk_mean_Y: Mean of FFT results for body linear
+  acceleration jerk signal in the Y direction.
+* fBodyAccJerk_mean_Z: Mean of FFT results for body linear
+  acceleration jerk signal in the Z direction.
+* fBodyAccJerk_std_X: Standard deviation of FFT results for body
+  linear acceleration jerk signal in the X direction.
+* fBodyAccJerk_std_Y: Standard deviation of FFT results for body
+  linear acceleration jerk signal in the Y direction.
+* fBodyAccJerk_std_Z: Standard deviation of FFT results for body
+  linear acceleration jerk signal in the Z direction.
+* fBodyGyro_mean_X: Mean of FFT results for body angular velocity in
+  the X direction.
+* fBodyGyro_mean_Y: Mean of FFT results for body angular velocity in
+  the Y direction.
+* fBodyGyro_mean_Z: Mean of FFT results for body angular velocity in
+  the Z direction.
+* fBodyGyro_std_X: Standard deviation of FFT results for body angular
+  velocity in the X direction.
+* fBodyGyro_std_Y: Standard deviation of FFT results for body angular
+  velocity in the Y direction.
+* fBodyGyro_std_Z: Standard deviation of FFT results for body angular
+  velocity in the Z direction.
+* tBodyAccMag_mean: Mean of the magnitude of the three-dimensional
+  body linear acceleration signals.
+* tBodyAccMag_std: Standard deviation of the magnitude of the
+  three-dimensional body linear acceleration signals.
+* tGravityAccMag_mean: Mean of the magnitude of the three-dimensional
+  gravity acceleration signals.
+* tGravityAccMag_std: Standard deviation of the magnitude of the
+  three-dimensional gravity acceleration signals.
+* tBodyAccJerkMag_mean: Mean of the magnitude of the three-dimensional
+  body linear acceleration jerk signals.
+* tBodyAccJerkMag_std: Standard deviation of the magnitude of the
+  three-dimensional body linear acceleration jerk signals.
+* tBodyGyroMag_mean: Mean of the magnitude of the three-dimensional
+  body angular velocity signals.
+* tBodyGyroMag_std: Standard deviation of the magnitude of the
+  three-dimensional body angular velocity signals.
+* tBodyGyroJerkMag_mean: Mean of the magnitude of the
+  three-dimensional body angular velocity jerk signals.
+* tBodyGyroJerkMag_std: Standard deviation of the magnitude of the
+  three-dimensional body angular velocity jerk signals.
+* fBodyAccMag_mean: Mean of magnitude of FFT results for body linear
+  acceleration.
+* fBodyAccMag_std: Standard deviation of magnitude of FFT results for
+  body linear acceleration.
+* fBodyBodyAccJerkMag_mean: Mean of magnitude of FFT results for body
+  linear acceleration jerk signals.
+* fBodyBodyAccJerkMag_std: Standard deviation of magnitude of FFT
+  results for body linear acceleration jerk signals.
+* fBodyBodyGyroMag_mean: Mean of magnitude of FFT results for body
+  angular velocity.
+* fBodyBodyGyroMag_std:: Standard deviation of magnitude of FFT
+  results for body angular velocity.
+* fBodyBodyGyroJerkMag_mean:: Mean of magnitude of FFT results for
+  body angular velocity jerk signals.
+* fBodyBodyGyroJerkMag_std: Standard deviation of magnitude of FFT
+  results for body angular velocity jerk signals.
 
 \[1\] "Human Activity Recognition Using Smartphones Dataset, Version
 1.0", Jorge L. Reyes-Ortiz, Davide Anguita, Alessandro Ghio, and Luca
