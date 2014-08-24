@@ -1,7 +1,8 @@
 gettingdatacoursera
 ===================
 
-Course project for Coursera "Getting and Cleaning Data" course
+Course project for Coursera "Getting and Cleaning Data" course for
+Frank Hecker.
 
 Repository Files
 ----------------
@@ -52,11 +53,12 @@ The `run_analysis.R` script will do the following:
 1. Load any required R packages.
 2. Download the original set of data files from the Internet (in
 zipped form) if not already present in the working directory.
-3. Extract the directory of data files into the working directory.
+3. Extract the `UCI HAR Dataset` directory of data files into the
+working directory (if not already present).
 4. Read in all of the relevant data files.
 5. Perform the five steps called for in the project description,
 culminating in the creation of the tidy dataset.
 6. Write the tidy data set into the output file `tidy_data.txt`.
 
-See `CodeBook.md` for a description of how the tidy data set is
-created and what data it contains.
+See `CodeBook.md` for a description of how the tidy data set output
+file is created and what data it contains.
